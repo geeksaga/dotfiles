@@ -19,8 +19,7 @@ if [ "$(uname)" == "Darwin" ]; then
 #    source install/osx.sh
 fi
 
-echo "creating neovim directories"
-mkdir -p ~/.vim-tmp
+echo -e "\\n\creating neovim directories"
 
 if ! command_exists zsh; then
     echo "zsh not found. Please install and then re-run installation scripts"

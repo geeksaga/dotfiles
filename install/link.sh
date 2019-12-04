@@ -11,7 +11,7 @@ for file in $linkables ; do
         echo "~${target#$HOME} already exists... Skipping."
     else
         echo "Creating symlink for $file"
-#        ln -s "$file" "$target"
+        ln -s "$file" "$target"
     fi
 done
 
@@ -19,7 +19,7 @@ echo -e "\\n\\ninstalling to ~/.config"
 echo "=============================="
 if [ ! -d "$HOME/.config" ]; then
     echo "Creating ~/.config"
-#    mkdir -p "$HOME/.config"
+    mkdir -p "$HOME/.config"
 fi
 
 config_files=$( find "$DOTFILES/config" -depth 1 2>/dev/null )
@@ -29,7 +29,7 @@ for config in $config_files; do
         echo "~${target#$HOME} already exists... Skipping."
     else
         echo "Creating symlink for $config"
-#        ln -s "$config" "$target"
+        ln -s "$config" "$target"
     fi
 done
 
@@ -37,7 +37,7 @@ done
 echo -e "\\n\\nCreating neovim symlinks"
 echo "=============================="
 NEOVIMFILES=( "$HOME/.config/nvim:$DOTFILES/config/nvim"
-         "$HOME/.config/nvim/init.vim:$DOTFILES/config/nvim/init.vim" )
+              "$HOME/.config/nvim/init.vim:$DOTFILES/config/nvim/init.vim" )
 
 for file in "${NEOVIMFILES[@]}"; do
     KEY=${file%%:*}
@@ -46,7 +46,7 @@ for file in "${NEOVIMFILES[@]}"; do
         echo "${KEY} already exists... skipping."
     else
         echo "Creating symlink for $KEY"
-#        ln -s "${VALUE}" "${KEY}"
+        ln -s "${VALUE}" "${KEY}"
     fi
 done
 
