@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 printf "Setting up Git...\\n\\n"
 
@@ -14,17 +14,16 @@ git config --global user.name "${name:-$defaultName}"
 git config --global user.email "${email:-$defaultEmail}"
 git config --global github.user "${github:-$defaultGithub}"
 
-shopt -s nocasematch
+#shopt -s nocasematch
 
-if [[ "$( uname )" == "Darwin" ]]; then
+if [ "$( uname )" = "Darwin" ]; then
     git config --global credential.helper "osxkeychain"
 else
-    read -rn 1 -p "Save user and password to an unencrypted file to avoid writing? [y/N] " save
-#    if [[ $save =~ ^([Yy])$ ]]; then
-    if [[ $save = "y" ]]; then
+    read -rp "Save user and password to an unencrypted file to avoid writing? [y/N] (default N): " save
+    save=${save:-N}
+    if [ $save = "y" ] || [ $save = "Y" ]; then
         git config --global credential.helper "store"
     else
         git config --global credential.helper "cache --timeout 3600"
     fi
 fi
-
