@@ -1,10 +1,10 @@
 # gitconfig
 [user]
-    name = albert
-    email = albert@jennifersoft.com
+    name = geeksaga 
+    email = geeksaga@geeksaga.com
 
 [github]
-    user = albert
+    user = geeksaga 
 
 [init]
     templatedir = ~/.dotfiles/git/templates
