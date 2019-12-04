@@ -21,7 +21,7 @@ if [[ "$( uname )" == "Darwin" ]]; then
 else
     read -rn 1 -p "Save user and password to an unencrypted file to avoid writing? [y/N] " save
 #    if [[ $save =~ ^([Yy])$ ]]; then
-    if [[ $save =~ "y" ]]; then
+    if [[ $save = "y" ]]; then
         git config --global credential.helper "store"
     else
         git config --global credential.helper "cache --timeout 3600"
