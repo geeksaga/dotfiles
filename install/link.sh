@@ -36,7 +36,7 @@ done
 # create neovim symlinks(use neovim)
 echo -e "\\n\\nCreating neovim symlinks"
 echo "=============================="
-NEOVIMFILES=( "$HOME/.config/nvim:$DOTFILES/config/nvim"
+NEOVIMFILES=$( "$HOME/.config/nvim:$DOTFILES/config/nvim"
          "$HOME/.config/nvim/init.vim:$DOTFILES/config/nvim/init.vim" )
 
 for file in "${NEOVIMFILES[@]}"; do
