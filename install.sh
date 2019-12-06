@@ -172,7 +172,7 @@ main() {
 
     setup_color
 
-    echo "Installing geeksaga dotfiles."
+    echo "Installing geeksaga dotfiles..."
 
     setup_dotfile
 
