@@ -43,7 +43,7 @@ You can install this via the command-line with either `curl` or `wget`.
 
 #### Manual inspection
 
-``shell
+```shell
 ➜ curl -Lo install.sh https://raw.githubusercontent.com/geeksaga/dotfiles/master/install.sh
 ➜ sh install.sh
 ```
