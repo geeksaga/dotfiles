@@ -105,7 +105,7 @@ If a `package.json` file or a `node_modules` directory exists in the current wor
 
 Vim is likely already installed on your system. If using a Mac, MacVim will be installed from Homebrew. Neovim will also be installed from Homebrew by default on a Mac. For other systems, you may need to install Neovim manually. See their [web site](https://neovim.io) for more information.
 
-[`link.sh`](install/link.sh) will symlink the XDG configuration directory into your home directory and will then create symlinks for `.vimrc` and `.vim` over to the Neovim configuration so that Vim and Neovim will both be configured in the same way from the same files. The benefit of this configuration is that you only have to maintain a single vim configuration for both, so that if Neovim (which is still alpha software) has issues, you can very seamlessly transition back to vim with no big impact to your productivity.
+[`setup_link()`](install.sh) will symlink the XDG configuration directory into your home directory and will then create symlinks for `.vimrc` and `.vim` over to the Neovim configuration so that Vim and Neovim will both be configured in the same way from the same files. The benefit of this configuration is that you only have to maintain a single vim configuration for both, so that if Neovim (which is still alpha software) has issues, you can very seamlessly transition back to vim with no big impact to your productivity.
 
 Inside of [`.zshrc`](zsh/zshrc.symlink), the `EDITOR` shell variable is set to `nvim`, defaulting to Neovim for editor tasks, such as git commit messages. Additionally, I have aliased `vim` to `nvim` in [`aliases.zsh`](zsh/aliases.zsh) You can remove this if you would rather not alias the `vim` command to `nvim`.
 
@@ -120,3 +120,63 @@ vim and neovim should just work once the correct plugins are installed. To insta
 Tmux is a terminal multiplexor which lets you create windows and splits in the terminal that you can attach and detach from. I use it to keep multiple projects open in separate windows and to create an IDE-like environment to work in where I can have my code open in vim/neovim and a shell open to run tests/scripts. Tmux is configured in [~/.tmux.conf](tmux/tmux.conf.symlink), and in [tmux/theme.sh](tmux/theme.sh), which defines the colors used, the layout of the tmux bar, and what what will be displayed, including the time and date, open windows, tmux session name, computer name, and current iTunes song playing. If not running on macOS, this configuration should be removed.
 
 When tmux starts up, [login-shell](bin/login-shell) will be run and if it determines you are running this on macOS, it will call reattach-to-user-namespace, to fix the system clipboard for use inside of tmux.
+
+## Usage
+
+`cd` into your top level project directory, then run the following docker
+command:
+
+```
+docker run \
+  --rm -it \
+  [-e UID="1000" \]
+  [-e GID="1000" \]
+  [-v <your init.vim directory>:/home/neovim/.config/nvim \]
+  -v <your workspace top level dir>:/mnt/workspace \
+  geeksaga/apline-neovim:latest \
+  [nvim arguments]
+```
+
+### Examples
+
+* Open neovim with file1 and file2 stacked horizontally:
+
+```
+
+docker run \
+    --rm -it \
+    -v $(pwd):/mnt/workspace \
+    geeksaga/apline-neovim:latest \
+    -o file1 file2
+```
+
+* Open neovim with file1 and use your custom neovim configuration stored in the
+  `.dotfile` directory under your `$HOME`:
+
+```
+docker run \
+    --rm -it \
+    -v $(pwd):/mnt/workspace \
+    -v $HOME/.dotfiles/nvim:/home/neovim/.config/nvim \
+    geeksaga/apline-neovim:latest \
+    file1
+```
+
+* File permission issues may arise if the default `user id (1000)` and `group
+  id (1000)` of the container does not match user id and group id of the host.
+
+```
+docker run \
+    --rm -it \
+    -v $(pwd):/mnt/workspace \
+    -e UID="1003" \
+    -e GID="1004" \
+    geeksaga/apline-neovim:latest \
+    -o file1 file2
+```
+
+You can find out your host user id and group id with the following command: `$ id`
+
+## Questions
+
+If you have questions, notice issues,  or would like to see improvements, please open an [issue](https://github.com/geeksaga/dotfiles/issues/new) and I'm happy to help you out!
