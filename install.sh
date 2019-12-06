@@ -57,6 +57,84 @@ setup_color() {
 	fi
 }
 
+setup_link() {
+    DOTFILES=$HOME/.dotfiles
+
+    echo -e "\\nCreating symlinks"
+    echo "=============================="
+    linkables=$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )
+    for file in $linkables ; do
+        target="$HOME/.$( basename "$file" '.symlink' )"
+        if [ -e "$target" ]; then
+            echo "~${target#$HOME} already exists... Skipping."
+        else
+            echo "Creating symlink for $file"
+            ln -s "$file" "$target"
+        fi
+    done
+
+    echo -e "\\n\\ninstalling to ~/.config"
+    echo "=============================="
+    if [ ! -d "$HOME/.config" ]; then
+        echo "Creating ~/.config"
+        mkdir -p "$HOME/.config"
+    fi
+
+    config_files=$( find "$DOTFILES/config" -depth 1 2>/dev/null )
+    for config in $config_files; do
+        target="$HOME/.config/$( basename "$config" )"
+        if [ -e "$target" ]; then
+            echo "~${target#$HOME} already exists... Skipping."
+        else
+            echo "Creating symlink for $config"
+            ln -s "$config" "$target"
+        fi
+    done
+
+    # create neovim symlinks(use neovim)
+    echo -e "\\n\\nCreating neovim symlinks"
+    echo "=============================="
+    KEY=$HOME/.config/nvim
+    VALUE=$DOTFILES/config/nvim
+
+    if [ -e "${KEY}" ]; then
+        echo "${KEY} already exists... skipping."
+    else
+        echo "Creating symlink for $KEY"
+        ln -s "${VALUE}" "${KEY}"
+    fi
+}
+
+setup_git() {
+    printf "Setting up Git...\\n\\n"
+
+    defaultName=$( git config --global user.name )
+    defaultEmail=$( git config --global user.email )
+    defaultGithub=$( git config --global github.user )
+
+    read -rp "Name [$defaultName] " name
+    read -rp "Email [$defaultEmail] " email
+    read -rp "Github username [$defaultGithub] " github
+
+    git config --global user.name "${name:-$defaultName}"
+    git config --global user.email "${email:-$defaultEmail}"
+    git config --global github.user "${github:-$defaultGithub}"
+
+    #shopt -s nocasematch
+
+    if [ "$( uname )" = "Darwin" ]; then
+        git config --global credential.helper "osxkeychain"
+    else
+        read -rp "Save user and password to an unencrypted file to avoid writing? [y/N] (default N): " save
+        save=${save:-N}
+        if [ $save = "y" ] || [ $save = "Y" ]; then
+            git config --global credential.helper "store"
+        else
+            git config --global credential.helper "cache --timeout 3600"
+        fi
+    fi
+}
+
 main() {
 	# Run as unattended if stdin is closed
 	if [ ! -t 0 ]; then
@@ -64,13 +142,13 @@ main() {
 		CHSH=no
 	fi
 
+    setup_color
+
     echo "Installing geeksaga dotfiles."
 
-    . install/link.sh
+    setup_link
 
-    . install/git.sh
-
-    setup_color
+    setup_git
 
     setup_shell
 
