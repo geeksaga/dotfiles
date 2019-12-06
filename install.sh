@@ -2,6 +2,12 @@
 
 #set -e
 
+# Default settings
+DOTFILES=${DOTFILES:-~/.dotfiles}
+REPO=${REPO:-geeksaga/dotfiles}
+REMOTE=${REMOTE:-https://github.com/${REPO}.git}
+BRANCH=${BRANCH:-master}
+
 command_exists() {
 	command -v "$@" >/dev/null 2>&1
 }
@@ -55,6 +61,28 @@ setup_color() {
 		BOLD=""
 		RESET=""
 	fi
+}
+
+setup_dotfile() {
+    umask g-w,o-w
+
+	echo "${BLUE}Cloning GeekSaga dotfiles...${RESET}"
+
+    command_exists git || {
+		error "git is not installed"
+		exit 1
+	}
+
+    git clone -c core.eol=lf -c core.autocrlf=false \
+		-c fsck.zeroPaddedFilemode=ignore \
+		-c fetch.fsck.zeroPaddedFilemode=ignore \
+		-c receive.fsck.zeroPaddedFilemode=ignore \
+		--depth=1 --branch "$BRANCH" "$REMOTE" "$DOTFILES" || {
+		error "git clone of dotfiles repo failed"
+		exit 1
+	}
+
+	echo
 }
 
 setup_link() {
@@ -145,6 +173,8 @@ main() {
     setup_color
 
     echo "Installing geeksaga dotfiles."
+
+    setup_dotfile
 
     setup_link
 
