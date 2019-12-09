@@ -102,7 +102,7 @@ setup_link() {
         fi
     done
 
-    case $(unname -r) in
+    case $(uname -r) in
         *"boot2docker"*)
             linkables=$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink.alpine' )
 
