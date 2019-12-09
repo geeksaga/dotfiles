@@ -2,6 +2,16 @@
 set -g utf8
 set-window-option -g utf8 on
 
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+#set -g @plugin 'tmux-plugins/tmux-yank'
+#set -g @shell_mode 'vi'
+#set -g @yank_with_mouse off # or 'on'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run -b '~/.tmux/plugins/tpm/tpm'
+
 #set -g default-command "login-shell"
 #set -g default-command "zsh"
 
