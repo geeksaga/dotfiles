@@ -91,6 +91,7 @@ setup_link() {
     echo -e "\\nCreating symlinks"
     echo "=============================="
     linkables=$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )
+
     for file in $linkables ; do
         target="$HOME/.$( basename "$file" '.symlink' )"
         if [ -e "$target" ]; then
@@ -100,6 +101,20 @@ setup_link() {
             ln -s "$file" "$target"
         fi
     done
+
+    case $(unname -r) in
+        *"boot2docker"*)
+            linkables=$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink.alpine' )
+
+            for file in $linkables ; do
+                target="$HOME/.$( basename "$file" '.symlink.alpine' )"
+
+                echo "Creating symlink for $file"
+                ln -s "$file" "$target"
+            done
+        ;;
+        *)
+    esac
 
     echo -e "\\n\\ninstalling to ~/.config"
     echo "=============================="
