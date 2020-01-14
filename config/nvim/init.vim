@@ -21,7 +21,9 @@ set mouse=h                     "Enable mouse in help mode
                                 "'a' to all mode, n, v, i, c to Normal, Visual, Insert, Command mode
 set wrap
 let g:onedark_terminal_italics = 1
+let g:spacevim_colorscheme = 'onedark'
 
+syntax on
 syntax sync minlines=200        "For speed up vim
 set clipboard=unnamed           "yank, paste to system clipboard
 
@@ -92,14 +94,15 @@ call plug#begin('~/.config/nvim/plugged/')
     Plug 'mhinz/vim-startify'               "fancy start page for empty vim
     Plug 'posva/vim-vue'
 
-    Plug 'joshdick/onedark.vim'
-    Plug 'sheerun/vim-polyglot'
+    Plug 'joshdick/onedark.vim'             "One Dark syntax theme https://github.com/joshdick/onedark.vim
+    Plug 'sheerun/vim-polyglot'             "A collection of language packs https://github.com/sheerun/vim-polyglot
 
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'tpope/vim-sensible'
     Plug 'junegunn/seoul256.vim'
     Plug 'thaerkh/vim-indentguides'
+    Plug 'cespare/vim-tomal'
     Plug 'fatih/vim-go', { 'tag': '*' }
     Plug 'nsf/gocode', { 'tag': 'v.20170907', 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/nvim/symlink.sh' }
 
