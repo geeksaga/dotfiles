@@ -1,6 +1,6 @@
 # use UTF8
-set -g utf8
-set-window-option -g utf8 on
+#set -g utf8
+#set-window-option -g utf8 on
 
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
