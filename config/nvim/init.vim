@@ -71,21 +71,6 @@ autocmd FileType js setlocal sw=2 ts=2
 
 "================================= Plugins ========================================
 call plug#begin('~/.config/nvim/plugged/')
-"    if has('nvim')
-"        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"    else
-"        Plug 'Shougo/deoplete.nvim'
-"        Plug 'roxma/nvim-yarp'
-"        Plug 'roxma/vim-hug-neovim-rpc'
-"     endif
-    " ----- For deoplete autocomplete -----
-"    Plug 'zchee/deoplete-jedi'
-"    Plug 'zchee/deoplete-zsh'
-"    Plug 'Shougo/neco-syntax'
-"    Plug 'Shougo/neco-vim'
-"    Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } "https://github.com/carlitux/deoplete-ternjs
-    Plug 'davidhalter/jedi-vim'
-
     Plug 'neoclide/coc.nvim', { 'branch': 'release' }
     Plug 'neoclide/coc.nvim', { 'tag': '*', 'branch': 'release' }
     Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
@@ -106,7 +91,10 @@ call plug#begin('~/.config/nvim/plugged/')
     Plug 'junegunn/fzf.vim'
     Plug 'mhinz/vim-startify'               "fancy start page for empty vim
     Plug 'posva/vim-vue'
-    Plug 'tomasiser/vim-code-dark'
+
+    Plug 'joshdick/onedark.vim'
+    Plug 'sheerun/vim-polyglot'
+
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'tpope/vim-sensible'
@@ -116,9 +104,6 @@ call plug#begin('~/.config/nvim/plugged/')
     Plug 'nsf/gocode', { 'tag': 'v.20170907', 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/nvim/symlink.sh' }
 
     call plug#end()
-
-" User deoplete
-"let g:deoplete#enable_at_startup = 1
 
 "================================= Plugins setting ==================================
 "----- Nerd Tree -----
@@ -141,18 +126,6 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
-"----- deoplete -----
-" use tab to forward cycle
-"inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-" use tab to backward cycle
-"inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-" For deoplete-ternjs
-"let g:deoplete#sources#ternjs#filetypes = [
-"                \ 'vue',
-"                \ ]
-" ----- jedi vim -----
-let g:jedi#show_call_signatures = "0"   "jedi-vim slowdown
-
 " ----- ale -----
 let g:ale_lint_on_save = 1              "Lint when saving a file
 let g:ale_sign_error = '✖'                                                      "Lint error sign
@@ -166,5 +139,5 @@ let g:indentguides_ignorelist = ['text']
 let g:indentguides_spacechar = '┆'
 let g:indentguides_tabchar = '|'
 
-colorscheme codedark
+colorscheme onedark
 
