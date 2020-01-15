@@ -22,9 +22,18 @@ set mouse=h                     "Enable mouse in help mode
 set wrap
 let g:onedark_terminal_italics = 1
 
-syntax on
+syntax on                       "Syntax highlight
+syntax enable                   "enable syntax processing
 syntax sync minlines=200        "For speed up vim
+
+set encoding=utf8               "set utf8 as standard encoding
+
 set clipboard=unnamed           "yank, paste to system clipboard
+
+"================================= Turn of swap =====================================
+set laststatus=2 " Always display the statusline in all windows
+set showtabline=2 " Always display the tabline, even if there is only one tab
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
 "================================= Turn of swap =====================================
 set noswapfile
@@ -98,6 +107,7 @@ call plug#begin('~/.config/nvim/plugged/')
 
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+
     Plug 'tpope/vim-sensible'
     Plug 'junegunn/seoul256.vim'
     Plug 'thaerkh/vim-indentguides'
