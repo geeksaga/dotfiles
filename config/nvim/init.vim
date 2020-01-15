@@ -21,7 +21,6 @@ set mouse=h                     "Enable mouse in help mode
                                 "'a' to all mode, n, v, i, c to Normal, Visual, Insert, Command mode
 set wrap
 let g:onedark_terminal_italics = 1
-let g:spacevim_colorscheme = 'onedark'
 
 syntax on
 syntax sync minlines=200        "For speed up vim
@@ -102,7 +101,7 @@ call plug#begin('~/.config/nvim/plugged/')
     Plug 'tpope/vim-sensible'
     Plug 'junegunn/seoul256.vim'
     Plug 'thaerkh/vim-indentguides'
-    Plug 'cespare/vim-tomal'
+    Plug 'cespare/vim-toml'
     Plug 'fatih/vim-go', { 'tag': '*' }
     Plug 'nsf/gocode', { 'tag': 'v.20170907', 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/nvim/symlink.sh' }
 
