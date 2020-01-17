@@ -1,52 +1,61 @@
-"I usually use Python. Sometimes use Html, Css, Javascript (vue.js) and Markdown.
-
 "================================= General Config ===================================
 
 filetype plugin on
 
-let g:mapleader = ","           "set leader key to comma
+let g:mapleader = ","           " set leader key to comma
 
-set number                      "line numbers
-set hlsearch                    "highlight searching result
-set ignorecase                  "ignore Case sensitive when searching
-set showmatch                   "highlight matched bracket ()
+set number                      " show line numbers
+set showmatch                   " highlight matched bracket [{()}]
+"set ruler
+"set showcmd                     " show command in bottom bar
+set wildmenu                     " visual autocomplete for command menu
+set lazyredraw                   " redraw only when we need to
+
+"================================= Serarch setting =================================
+set smartcase
+set hlsearch                    " highlight searching result
+set ignorecase                  " ignore Case sensitive when searching
+set incsearch                   " search as characters are entered
 
 "================================= Optional setting =================================
-set relativenumber              "show relative number from current line
-                                "Highly recommended
-set history=1000                "store :cmd history
-set title                       "change the terminal title
-set cursorline                  "highlight cursor line
-set mouse=h                     "Enable mouse in help mode
-                                "'a' to all mode, n, v, i, c to Normal, Visual, Insert, Command mode
+set relativenumber                 " show relative number from current line
+set history=1000                   " store :cmd history
+set title                          " change the terminal title
+set cursorline                     " highlight cursor line
+set mouse=h                        " Enable mouse in help mode
+                                   "'a' to all mode, n, v, i, c to Normal, Visual, Insert, Command mode
 set wrap
 let g:onedark_terminal_italics = 1
 
-syntax on                       "Syntax highlight
-syntax enable                   "enable syntax processing
-syntax sync minlines=200        "For speed up vim
+if has("syntax")
+    syntax on                           " Syntax highlight
+endif
 
-set encoding=utf8               "set utf8 as standard encoding
+syntax enable                       " enable syntax processing
+syntax sync minlines=200            " For speed up vim
 
-" set clipboard=unnamed           "yank, paste to system clipboard
-set clipboard=unnamedplus           "yank, paste to system clipboard
+set encoding=utf8                   " set utf8 as standard encoding
+
+" set clipboard=unnamed             " yank, paste to system clipboard
+set clipboard=unnamedplus           " yank, paste to system clipboard
 
 "================================= Turn of swap =====================================
-set laststatus=2 " Always display the statusline in all windows
-set showtabline=2 " Always display the tabline, even if there is only one tab
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set laststatus=2                     " Always display the statusline in all windows
+set showtabline=2                    " Always display the tabline, even if there is only one tab
+set noshowmode                       " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
 "================================= Turn of swap =====================================
 set noswapfile
 set nobackup
 set nowb
 
-"================================= Indentation ======================================
+"================================= Spaces & Tabs (Indentation) ======================================
 set smartindent
-set tabstop=4
-set shiftwidth=4
-set expandtab
 set autoindent
+set shiftwidth=4                  " autoindent witdth
+set softtabstop=4                 " number of spaces in tab where editing
+set tabstop=4                     " number of visual spaces per TAB
+set expandtab                     " tabs are spaces
 
 "================================= Tap & Space ======================================
 nmap <leader>l <Esc>:set list!<CR>
