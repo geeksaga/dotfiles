@@ -28,7 +28,8 @@ syntax sync minlines=200        "For speed up vim
 
 set encoding=utf8               "set utf8 as standard encoding
 
-set clipboard=unnamed           "yank, paste to system clipboard
+" set clipboard=unnamed           "yank, paste to system clipboard
+set clipboard=unnamedplus           "yank, paste to system clipboard
 
 "================================= Turn of swap =====================================
 set laststatus=2 " Always display the statusline in all windows
