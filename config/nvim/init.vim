@@ -9,6 +9,9 @@ set showmatch                   " highlight matched bracket [{()}]
 "set ruler
 "set showcmd                     " show command in bottom bar
 set wildmenu                     " visual autocomplete for command menu
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
 set lazyredraw                   " redraw only when we need to
 
 "================================= Serarch setting =================================
@@ -99,16 +102,20 @@ call plug#begin('~/.config/nvim/plugged/')
 
     Plug 'nightsense/simplifysimplify'
     " Plug 'wakatime/vim-wakatime'            "check coding time
-    "
+
+
+    Plug 'jistr/vim-nerdtree-tabs'          "Toggle nerd tree with one key
     Plug 'scrooloose/nerdtree'              "A tree explorer plugin for vim
     Plug 'scrooloose/syntastic'             "Syntax checking hacks for vim
 
-    Plug 'jistr/vim-nerdtree-tabs'          "Toggle nerd tree with one key
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'tpope/vim-fugitive'               "Git Wrapper
+    Plug 'airblade/vim-gitgutter'           "Show git status in vim
+
     Plug 'mattn/emmet-vim'                  "Trigger: <C-y><leader>
     Plug 'tpope/vim-commentary'             "Trigger: gc
     Plug 'jiangmiao/auto-pairs'             "Auto pair for ',), }, ]...
-    Plug 'airblade/vim-gitgutter'           "Show git status in vim
-    Plug 'tpope/vim-fugitive'               "Git Wrapper
     Plug 'ctrlpvim/ctrlp.vim'               "Fuzzy file, buffer, mru, tag, etc finder. Ctrl + P for search file
     Plug '~/.fzf'                           "https://github.com/junegunn/fzf.vim
     Plug 'junegunn/fzf.vim'
@@ -118,14 +125,10 @@ call plug#begin('~/.config/nvim/plugged/')
     Plug 'joshdick/onedark.vim'             "One Dark syntax theme https://github.com/joshdick/onedark.vim
     Plug 'sheerun/vim-polyglot'             "A collection of language packs https://github.com/sheerun/vim-polyglot
 
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-
     Plug 'tpope/vim-sensible'
     Plug 'junegunn/seoul256.vim'
     Plug 'thaerkh/vim-indentguides'
     Plug 'cespare/vim-toml'
-    Plug 'fatih/vim-go', { 'tag': '*' }
     Plug 'nsf/gocode', { 'tag': 'v.20170907', 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/nvim/symlink.sh' }
 
     call plug#end()
@@ -163,6 +166,14 @@ let g:ale_fixers = {'javascript': ['prettier', 'eslint']}                       
 let g:indentguides_ignorelist = ['text']
 let g:indentguides_spacechar = '┆'
 let g:indentguides_tabchar = '|'
+
+" https://github.com/ctrlpvim/ctrlp.vim
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\.git$\|node_modules$\|DS_Store$\|log$\|tmp$',
+    \ 'file': '\v\.(pyc|exe|so|dll)$'
+    \ }
+
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']       "Ignore in .gitignore
 
 colorscheme onedark
 
