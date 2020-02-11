@@ -109,7 +109,7 @@ call plug#begin('~/.config/nvim/plugged/')
     Plug 'jiangmiao/auto-pairs'             "Auto pair for ',), }, ]...
     Plug 'airblade/vim-gitgutter'           "Show git status in vim
     Plug 'tpope/vim-fugitive'               "Git Wrapper
-    Plug 'ctrlpvim/ctrlp.vim'               "Ctrl + P for search file
+    Plug 'ctrlpvim/ctrlp.vim'               "Fuzzy file, buffer, mru, tag, etc finder. Ctrl + P for search file
     Plug '~/.fzf'                           "https://github.com/junegunn/fzf.vim
     Plug 'junegunn/fzf.vim'
     Plug 'mhinz/vim-startify'               "fancy start page for empty vim
