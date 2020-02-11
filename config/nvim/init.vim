@@ -105,7 +105,7 @@ call plug#begin('~/.config/nvim/plugged/')
     Plug 'tpope/vim-commentary'             "Trigger: gc
     Plug 'jiangmiao/auto-pairs'             "Auto pair for ',), }, ]...
     Plug 'airblade/vim-gitgutter'           "Show git status in vim
-    Plug 'tpope/vim-fugitive'               "syntax error
+    Plug 'tpope/vim-fugitive'               "Git Wrapper
     Plug 'ctrlpvim/ctrlp.vim'               "Ctrl + P for search file
     Plug '~/.fzf'                           "https://github.com/junegunn/fzf.vim
     Plug 'junegunn/fzf.vim'
