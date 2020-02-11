@@ -99,7 +99,10 @@ call plug#begin('~/.config/nvim/plugged/')
 
     Plug 'nightsense/simplifysimplify'
     " Plug 'wakatime/vim-wakatime'            "check coding time
-    Plug 'scrooloose/nerdtree'
+    "
+    Plug 'scrooloose/nerdtree'              "A tree explorer plugin for vim
+    Plug 'scrooloose/syntastic'             "Syntax checking hacks for vim
+
     Plug 'jistr/vim-nerdtree-tabs'          "Toggle nerd tree with one key
     Plug 'mattn/emmet-vim'                  "Trigger: <C-y><leader>
     Plug 'tpope/vim-commentary'             "Trigger: gc
