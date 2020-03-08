@@ -129,9 +129,13 @@ call plug#begin('~/.config/nvim/plugged/')
     Plug 'junegunn/seoul256.vim'
     Plug 'thaerkh/vim-indentguides'
     Plug 'cespare/vim-toml'
+
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     Plug 'nsf/gocode', { 'tag': 'v.20170907', 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/nvim/symlink.sh' }
 
     call plug#end()
+
+inoremap jk <Esc>
 
 "================================= Plugins setting ==================================
 "----- Nerd Tree -----
