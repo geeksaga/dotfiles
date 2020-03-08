@@ -30,6 +30,8 @@ set mouse=h                        " Enable mouse in help mode
 set wrap
 let g:onedark_terminal_italics = 1
 
+let g:polyglot_disabled = ['markdown']
+
 if has("syntax")
     syntax on                           " Syntax highlight
 endif
