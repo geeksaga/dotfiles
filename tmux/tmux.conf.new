@@ -30,6 +30,24 @@ bind e new-window -n "~/.tmux.conf.local" "sh -c '\${EDITOR:-vim} ~/.tmux.conf.l
 # reload configuration
 bind r source-file ~/.tmux.conf \; display '~/.tmux.conf sourced'
 
+# List of plugins
+# https://github.com/tmux-plugins/tpm
+set -g @plugin 'tmux-plugins/tpm'
+# https://github.com/tmux-plugins/tmux-sensible
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-urlview'
+set -g @plugin 'tmux-plugins/tmux-open'
+# https://github.com/tmux-plugins/tmux-yank
+set -g @plugin 'tmux-plugins/tmux-yank'
+# set -g @plugin 'jbnicolai/tmux-fpp'
+
+#set -g @custom_copy_command 'xsel -i -b'
+#set -g @yank_action 'copy-pipe' # or 'copy-pipe-and-cancel' for the default
+set -g @yank_selection 'primary'
+set -g @yank_selection_mouse 'clipboard'
+#set -g @yank_with_mouse off # or 'on'
+set -g @shell_mode 'vi'
+
 
 # -- display -------------------------------------------------------------------
 
@@ -171,6 +189,8 @@ if '[ -f ~/.tmux.conf.local ]' 'source ~/.tmux.conf.local'
 run 'cut -c3- ~/.tmux.conf | sh -s _apply_configuration'
 run -b '[ -z "#{window_active}" ] && [ -z "#{version}" ] && tmux set display-time 3000 \; display "This configuration will soon require tmux >= 2.4" \; set -u display-time || true'
 
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
 
 # EOF
 #
@@ -223,9 +243,9 @@ run -b '[ -z "#{window_active}" ] && [ -z "#{version}" ] && tmux set display-tim
 #     window=$(tmux new-window -t "$current_session:" -P "exec maximized... 2> /dev/null & tmux setw -t \"$current_session:\" remain-on-exit on; printf \"Pane has been maximized, press <prefix>+ to restore. %s\" '$current_pane'")
 #     window=${window%.*}
 #
-#     retry=10
+#     retry=1000
 #     while [ x"$(tmux list-panes -t "$window" -F '#{session_name}:#{window_index} #{pane_dead}' 2>/dev/null)" != x"$window 1" ] && [ "$retry" -ne 0 ]; do
-#       sleep 0.05
+#       sleep 0.1
 #       retry=$((retry - 1))
 #     done
 #     if [ "$retry" -eq 0 ]; then
@@ -481,9 +501,13 @@ run -b '[ -z "#{window_active}" ] && [ -z "#{version}" ] && tmux set display-tim
 #         user[$2] = $1; parent[$2] = $3; child[$3] = $2
 #       }
 #       END {
-#         for (i in user)
+#         for (i in parent)
 #         {
-#           if (!(i in child) && parent[i] != 1)
+#           j = i
+#           while (parent[j])
+#             j = parent[j]
+#
+#           if (!(i in child) && j != 1)
 #           {
 #             file = "/proc/" i "/cmdline"; getline command < file; close(file)
 #             gsub(/\0/, " ", command)
@@ -501,7 +525,11 @@ run -b '[ -z "#{window_active}" ] && [ -z "#{version}" ] && tmux set display-tim
 #       END {
 #         for (i in parent)
 #         {
-#           if (!(i in child) && parent[i] != 1)
+#           j = i
+#           while (parent[j])
+#             j = parent[j]
+#
+#           if (!(i in child) && j != 1)
 #           {
 #             print i, user[i], command[i]
 #             exit
@@ -748,10 +776,13 @@ run -b '[ -z "#{window_active}" ] && [ -z "#{version}" ] && tmux set display-tim
 #     '{i = $2 == "-T" ? 4 : 5; gsub(/^[;]$/, "\\\\&", $i); gsub(/^[$"#~]$/, "'"'"'&'"'"'", $i); gsub(/^['"'"']$/, "\"&\"", $i); print}' > "$cfg.in"
 #
 #   # ignore bindings with errors
-#   while ! out=$(tmux source-file "$cfg.in"); do
-#     line=$(printf "%s" "$out" | cut -d':' -f2)
-#     perl -n -i -e "if ($. != $line) { print }" "$cfg.in"
-#   done
+#   if ! tmux source-file "$cfg.in"; then
+#     verbose_flag=$(tmux source-file -v /dev/null 2> /dev/null && printf -- '-v' || true)
+#     while ! out=$(tmux source-file "$verbose_flag" "$cfg.in"); do
+#       line=$(printf "%s" "$out" | tail -1 | cut -d':' -f2)
+#       perl -n -i -e "if ($. != $line) { print }" "$cfg.in"
+#     done
+#   fi
 # }
 #
 # _apply_theme() {
