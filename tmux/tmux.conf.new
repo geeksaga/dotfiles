@@ -108,6 +108,8 @@ unbind p
 bind -r C-h previous-window # select previous window
 bind -r C-l next-window     # select next window
 bind Tab last-window        # move to last active window
+bind -r S-Left swap-window -t -1 # swap current window to left
+bind -r S-Right swap-window -t +1 # swap current window to Right
 
 # toggle mouse
 bind m run "cut -c3- ~/.tmux.conf | sh -s _toggle_mouse"
