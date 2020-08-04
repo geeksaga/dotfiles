@@ -1,5 +1,4 @@
 "================================= General Config ===================================
-
 filetype plugin on
 
 let g:mapleader = ","           " set leader key to comma
@@ -23,11 +22,15 @@ set incsearch                   " search as characters are entered
 "================================= Optional setting =================================
 set relativenumber                 " show relative number from current line
 set history=1000                   " store :cmd history
+set hidden                         " Hide buffers when they are abandoned
 set title                          " change the terminal title
 set cursorline                     " highlight cursor line
 set mouse=h                        " Enable mouse in help mode
                                    "'a' to all mode, n, v, i, c to Normal, Visual, Insert, Command mode
 set wrap
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+
 let g:onedark_terminal_italics = 1
 
 let g:polyglot_disabled = ['markdown']
@@ -36,7 +39,7 @@ if has("syntax")
     syntax on                           " Syntax highlight
 endif
 
-syntax enable                       " enable syntax processing
+" syntax enable                       " enable syntax processing
 syntax sync minlines=200            " For speed up vim
 
 set encoding=utf8                   " set utf8 as standard encoding
@@ -110,17 +113,25 @@ call plug#begin('~/.config/nvim/plugged/')
     Plug 'scrooloose/nerdtree'              "A tree explorer plugin for vim
     Plug 'scrooloose/syntastic'             "Syntax checking hacks for vim
 
+    Plug 'tpope/vim-fugitive'               "Git Wrapper
+    " Plug '~/.fzf'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } "https://github.com/junegunn/fzf.vim
+    Plug 'junegunn/fzf.vim'
+    Plug 'vuciv/vim-bujo'                   "https://github.com/vuciv/vim-bujo
+
+    Plug 'gruvbox-community/gruvbox'
+    Plug 'sainnhe/gruvbox-material'
+    Plug 'phanviet/vim-monokai-pro'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-    Plug 'tpope/vim-fugitive'               "Git Wrapper
+    Plug 'flazz/vim-colorschemes'
+
     Plug 'airblade/vim-gitgutter'           "Show git status in vim
 
     Plug 'mattn/emmet-vim'                  "Trigger: <C-y><leader>
     Plug 'tpope/vim-commentary'             "Trigger: gc
     Plug 'jiangmiao/auto-pairs'             "Auto pair for ',), }, ]...
     Plug 'ctrlpvim/ctrlp.vim'               "Fuzzy file, buffer, mru, tag, etc finder. Ctrl + P for search file
-    Plug '~/.fzf'                           "https://github.com/junegunn/fzf.vim
-    Plug 'junegunn/fzf.vim'
     Plug 'mhinz/vim-startify'               "fancy start page for empty vim
     Plug 'posva/vim-vue'
 
@@ -132,6 +143,8 @@ call plug#begin('~/.config/nvim/plugged/')
     Plug 'thaerkh/vim-indentguides'
     Plug 'cespare/vim-toml'
 
+    Plug 'rust-lang/rust.vim'
+
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     Plug 'nsf/gocode', { 'tag': 'v.20170907', 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/nvim/symlink.sh' }
 
@@ -142,6 +155,47 @@ inoremap jk <Esc>
 "================================= Plugins setting ==================================
 "----- Nerd Tree -----
 map <F3> :NERDTreeToggle<CR>
+
+" vim TODO
+nmap <C-S> <Plug>BujoAddnormal
+imap <C-S> <Plug>BujoAddinsert
+nmap <C-Q> <Plug>BujoChecknormal
+imap <C-Q> <Plug>BujoCheckinsert
+" nmap <Leader>tu <Plug>BujoChecknormal
+" nmap <Leader>th <Plug>BujoAddnormal
+let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
+let g:bujo#window_width = 40
+
+let g:gruvbox_contrast_dark = 'hard'
+if exists('+termguicolors')
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+let g:gruvbox_invert_selection='0'
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+
+" --- vim go (polyglot) settings.
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_format_strings = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_auto_sameids = 1
+
 "map nt <ESC>:NERDTreeToggle<CR>
 "map nt <ESC>:NERDTree<CR>
 let NERDTreeChDirMode=2
@@ -181,5 +235,18 @@ let g:ctrlp_custom_ignore = {
 
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']       "Ignore in .gitignore
 
-colorscheme onedark
+" colorscheme onedark
+colorscheme gruvbox
+set background=dark
+
+if executable('rg')
+    let g:rg_derive_root='true'
+endif
+
+let loaded_matchparen = 1
+let mapleader = " "
+
+let g:netrw_browse_split = 2
+let g:netrw_banner = 0
+let g:netrw_winsize = 25
 
