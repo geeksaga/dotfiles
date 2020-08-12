@@ -31,7 +31,7 @@ set wrap
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
-let g:onedark_terminal_italics = 1
+" let g:onedark_terminal_italics = 1
 
 let g:polyglot_disabled = ['markdown']
 
@@ -57,7 +57,7 @@ set noswapfile
 set nobackup
 set nowb
 
-"================================= Spaces & Tabs (Indentation) ======================================
+"================================= Spaces & Tabs (Indentation) ======================
 set smartindent
 set autoindent
 set shiftwidth=4                  " autoindent witdth
@@ -105,48 +105,56 @@ call plug#begin('~/.config/nvim/plugged/')
     " ----- end -----
     Plug 'w0rp/ale', { 'do': 'npm install -g prettier' }
 
+    Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+
     Plug 'nightsense/simplifysimplify'
     " Plug 'wakatime/vim-wakatime'            "check coding time
 
+    Plug 'bronson/vim-visual-star-search'
 
     Plug 'jistr/vim-nerdtree-tabs'          "Toggle nerd tree with one key
     Plug 'scrooloose/nerdtree'              "A tree explorer plugin for vim
     Plug 'scrooloose/syntastic'             "Syntax checking hacks for vim
 
-    Plug 'tpope/vim-fugitive'               "Git Wrapper
     " Plug '~/.fzf'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } "https://github.com/junegunn/fzf.vim
     Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/seoul256.vim'
     Plug 'vuciv/vim-bujo'                   "https://github.com/vuciv/vim-bujo
 
+    Plug 'ryanoasis/vim-devicons'
     Plug 'gruvbox-community/gruvbox'
     Plug 'sainnhe/gruvbox-material'
     Plug 'phanviet/vim-monokai-pro'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'flazz/vim-colorschemes'
+    Plug 'itchyny/lightline.vim'            " https://github.com/itchyny/lightline.vim
 
     Plug 'airblade/vim-gitgutter'           "Show git status in vim
 
     Plug 'mattn/emmet-vim'                  "Trigger: <C-y><leader>
-    Plug 'tpope/vim-commentary'             "Trigger: gc
+
+    Plug 'tpope/vim-fugitive'               "Git Wrapper
+    Plug 'tpope/vim-commentary'             "Trigger: gc, gcc
+    Plug 'tpope/vim-surround'               "Trigger: cs'<>, ds'
+    Plug 'tpope/vim-sensible'
+
     Plug 'jiangmiao/auto-pairs'             "Auto pair for ',), }, ]...
     Plug 'ctrlpvim/ctrlp.vim'               "Fuzzy file, buffer, mru, tag, etc finder. Ctrl + P for search file
     Plug 'mhinz/vim-startify'               "fancy start page for empty vim
     Plug 'posva/vim-vue'
 
-    Plug 'joshdick/onedark.vim'             "One Dark syntax theme https://github.com/joshdick/onedark.vim
+"    Plug 'joshdick/onedark.vim'             "One Dark syntax theme https://github.com/joshdick/onedark.vim
     Plug 'sheerun/vim-polyglot'             "A collection of language packs https://github.com/sheerun/vim-polyglot
 
-    Plug 'tpope/vim-sensible'
-    Plug 'junegunn/seoul256.vim'
     Plug 'thaerkh/vim-indentguides'
     Plug 'cespare/vim-toml'
 
     Plug 'rust-lang/rust.vim'
 
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-    Plug 'nsf/gocode', { 'tag': 'v.20170907', 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/nvim/symlink.sh' }
+    Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 
     call plug#end()
 
@@ -155,6 +163,18 @@ inoremap jk <Esc>
 "================================= Plugins setting ==================================
 "----- Nerd Tree -----
 map <F3> :NERDTreeToggle<CR>
+
+
+"----- vim visual start search -----
+" xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
+" xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
+
+" function! s:VSetSearch(cmdtype)
+"     let temp = @s
+"     norm! gv"sy
+"     let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
+"     let @s = temp
+" endfunction
 
 " vim TODO
 nmap <C-S> <Plug>BujoAddnormal
@@ -166,6 +186,20 @@ imap <C-Q> <Plug>BujoCheckinsert
 let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
 let g:bujo#window_width = 40
 
+"----- airline -----
+"let g:airline_left_sep='>'
+"let g:airline_right_sep='<'
+let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'default'
+"let g:airline_theme='hybrid'
+
+nnoremap <leader>q :bp<CR>
+nnoremap <leader>w :bn<CR>
+
+"----- gruvbox -----
 let g:gruvbox_contrast_dark = 'hard'
 if exists('+termguicolors')
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -173,12 +207,32 @@ if exists('+termguicolors')
 endif
 let g:gruvbox_invert_selection='0'
 
+"----- Coc -----
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+
+let g:loaded_ruby_provider = 0
+let g:python3_host_prog = '/opt/python3.8.5/bin/python3'
+
+" ----- lightline ----
+let g:lightline = {
+      \ 'colorscheme': 'seoul256',
+      \ }
 
 " --- vim go (polyglot) settings.
 let g:go_highlight_build_constraints = 1
@@ -244,7 +298,6 @@ if executable('rg')
 endif
 
 let loaded_matchparen = 1
-let mapleader = " "
 
 let g:netrw_browse_split = 2
 let g:netrw_banner = 0
