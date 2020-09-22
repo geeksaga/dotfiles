@@ -1,7 +1,7 @@
 # gitconfig
 [user]
-    name = geeksaga 
-    email = geeksaga@geeksaga.com
+    name = albert
+    email = albert@jennifersoft.com
 
 [github]
     user = geeksaga 
@@ -166,8 +166,8 @@
     extendRegexp = true
     lineNumber = true
 [credential]
-    # helper = osxkeychain
-    helper = cache --timeout 3600
+    helper = osxkeychain
+    # helper = cache --timeout 3600
 
 [difftool "Kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
@@ -180,3 +180,8 @@
 [pager]
     diff = "diff-so-fancy | less --tabs=4 -RFX"
     show = "diff-so-fancy | less --tabs=4 -RFX"
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
