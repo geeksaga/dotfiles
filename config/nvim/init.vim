@@ -70,17 +70,17 @@ nmap <leader>l <Esc>:set list!<CR>
 highlight SpecialKey cterm=None ctermfg=grey
 map <leader>2 <Esc>:retab<CR>:set ts=4<CR>:set noexpandtab<CR>:retab!<CR>:set expandtab<CR>:set ts=2<CR>:set sw=2<CR>:retab!<CR>
 map <leader>4 <Esc>:retab<CR>:set ts=2<CR>:set noexpandtab<CR>:retab!<CR>:set expandtab<CR>:set ts=4<CR>:set sw=4<CR>:retab!<CR>
-set listchars=tab:>¬∑
-set listchars+=trail:¬∑
-set listchars+=extends:¬ª
-set listchars+=precedes:¬´
-set listchars+=nbsp:¬∑
-set listchars+=space:¬∑
-" set listchars=tab:>¬∑
-" set listchars+=trail:¬∑          "show for tab, trail char at the end of the line
-" set listchars+=extends:¬ª
-" set listchars+=precedes:¬´
-set fillchars+=vert:\‚îÇ          "Make vertical split separator full line
+set listchars=tab:>·
+set listchars+=trail:·
+set listchars+=extends:»
+set listchars+=precedes:«
+set listchars+=nbsp:·
+set listchars+=space:·
+" set listchars=tab:>·
+" set listchars+=trail:·          "show for tab, trail char at the end of the line
+" set listchars+=extends:»
+" set listchars+=precedes:«
+set fillchars+=vert:\│          "Make vertical split separator full line
 
 " ================================ Persistent Undo ===================================
 " Keep undo history across sessions, by storing in file.
@@ -122,7 +122,7 @@ call plug#begin('~/.config/nvim/plugged/')
     Plug 'junegunn/seoul256.vim'
     Plug 'vuciv/vim-bujo'                   "https://github.com/vuciv/vim-bujo
 
-    " Plug 'ryanoasis/vim-devicons'
+    Plug 'ryanoasis/vim-devicons'
     Plug 'gruvbox-community/gruvbox'
     Plug 'sainnhe/gruvbox-material'
     Plug 'phanviet/vim-monokai-pro'
@@ -145,7 +145,7 @@ call plug#begin('~/.config/nvim/plugged/')
     Plug 'mhinz/vim-startify'               "fancy start page for empty vim
     Plug 'posva/vim-vue'
 
-    " Plug 'joshdick/onedark.vim'             "One Dark syntax theme https://github.com/joshdick/onedark.vim
+"    Plug 'joshdick/onedark.vim'             "One Dark syntax theme https://github.com/joshdick/onedark.vim
     Plug 'sheerun/vim-polyglot'             "A collection of language packs https://github.com/sheerun/vim-polyglot
 
     Plug 'thaerkh/vim-indentguides'
@@ -227,7 +227,7 @@ inoremap <silent><expr> <Tab>
 
 
 let g:loaded_ruby_provider = 0
-" let g:python3_host_prog = '/opt/python3.8.5/bin/python3'
+let g:python3_host_prog = '/opt/python3.8.5/bin/python3'
 
 " ----- lightline ----
 let g:lightline = {
@@ -257,28 +257,28 @@ let NERDTreeIgnore=['\.vim$', '\~$', '\.pyc$', '\.swp$']
 let NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$',  '\~$']
 let NERDTreeShowBookmarks=1
 let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "‚úπ",
-    \ "Staged"    : "‚úö",
-    \ "Untracked" : "‚ú≠",
-    \ "Renamed"   : "‚ûú",
-    \ "Unmerged"  : "‚ïê",
-    \ "Deleted"   : "‚úñ",
-    \ "Dirty"     : "‚úó",
-    \ "Clean"     : "‚úîÔ∏é",
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
     \ "Unknown"   : "?"
     \ }
 
 " ----- ale -----
 let g:ale_lint_on_save = 1              "Lint when saving a file
-let g:ale_sign_error = '‚úñ'                                                      "Lint error sign
-let g:ale_sign_warning = '‚ö†'                                                    "Lint warning sign
+let g:ale_sign_error = '✖'                                                      "Lint error sign
+let g:ale_sign_warning = '⚠'                                                    "Lint warning sign
 let g:ale_statusline_format =[' %d E ', ' %d W ', '']                           "Status line texts
 let g:ale_linters = {'javascript': ['eslint']}                                  "Lint js with eslint
 let g:ale_fixers = {'javascript': ['prettier', 'eslint']}                       "Fix eslint errors
-" ALEFix, ALEFixSuggestÎ°ú fix ÏÇ¨Ïö© Í∞ÄÎä•
+" ALEFix, ALEFixSuggest로 fix 사용 가능
 
 let g:indentguides_ignorelist = ['text']
-let g:indentguides_spacechar = '‚îÜ'
+let g:indentguides_spacechar = '┆'
 let g:indentguides_tabchar = '|'
 
 " https://github.com/ctrlpvim/ctrlp.vim
@@ -302,5 +302,3 @@ let loaded_matchparen = 1
 let g:netrw_browse_split = 2
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
-
-
