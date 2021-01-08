@@ -20,6 +20,7 @@ floating_modifier $mod
 
 #autostart
 exec --no-startup-id hsetroot -cover ~/Pictures/wallpapers/river_in_village_portrait.jpg
+#exec --no-startup-id feh --bg-scale /home/user/사진/background.jpg
 exec --no-startup-id xsettingsd &
 exec --no-startup-id compton -b
 exec --no-startup-id blueman-applet

@@ -1,1 +1,1 @@
-/Users/albert/.config/nvim/plugged/gocode/nvim/ftplugin/go/gocomplete.vim
+/home/albert/.config/nvim/plugged/gocode/nvim/ftplugin/go/gocomplete.vim
