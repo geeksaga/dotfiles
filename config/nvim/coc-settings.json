@@ -22,6 +22,23 @@
        }
     }
   },
+  "java.home": "/opt/java/jdk11",
+  /* "java.jdt.ls.vmargs": "-encoding UTF-8", */
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-1.6",
+      "path": "/opt/java/jdk6"
+    },
+    {
+      "name": "JavaSE-1.8",
+      "path": "/opt/java/jdk8",
+      "default": true
+    },
+    {
+      "name": "JavaSE-11",
+      "path": "/opt/java/jdk11"
+    }
+  ],
   "suggest.enablePreview": true,
   "codeLens.enable": true,
   "git.addedSign.text": "┃",
