@@ -9,7 +9,10 @@
 
 # -- general -------------------------------------------------------------------
 
-set -g default-terminal "screen-256color" # colors!
+# set -g default-terminal "screen-256color" # colors!
+# modern colors
+set -g default-terminal "tmux-256color"
+set -ga terminal-overrides ",alacritty:Tc"
 setw -g xterm-keys on
 set -s escape-time 10                     # faster command sequences
 set -sg repeat-time 600                   # increase repeat timeout
@@ -22,7 +25,7 @@ bind C-a send-prefix
 set -q -g status-utf8 on                  # expect UTF-8 (tmux < 2.2)
 setw -q -g utf8 on
 
-set -g history-limit 5000                 # boost history
+set -g history-limit 10000                 # boost history
 
 # edit configuration
 bind e new-window -n "~/.tmux.conf.local" "sh -c '\${EDITOR:-vim} ~/.tmux.conf.local && tmux source ~/.tmux.conf && tmux display \"~/.tmux.conf sourced\"'"
@@ -45,6 +48,10 @@ set -g @plugin 'tmux-plugins/tmux-yank'
 
 set -g @plugin 'egel/tmux-gruvbox'
 set -g @tmux-gruvbox 'dark' # or 'light'
+
+# https://github.com/mattdavis90/base16-tmux
+# set -g @plugin 'mattdavis90/base16-tmux'
+# set -g @colors-base16 'gruvbox-dark-hard'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
@@ -201,6 +208,10 @@ run -b '[ -z "#{window_active}" ] && [ -z "#{version}" ] && tmux set display-tim
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
+
+# Avoid date/time taking up space
+set -g status-right ''
+set -g status-right-length 0
 
 # EOF
 #
