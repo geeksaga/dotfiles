@@ -53,9 +53,6 @@ set -g @tmux-gruvbox 'dark' # or 'light'
 # set -g @plugin 'mattdavis90/base16-tmux'
 # set -g @colors-base16 'gruvbox-dark-hard'
 
-# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run '~/.tmux/plugins/tpm/tpm'
-
 set -g @custom_copy_command 'xsel -i -b'
 set -g @yank_action 'copy-pipe' # or 'copy-pipe-and-cancel' for the default
 set -g @yank_selection 'primary'
@@ -212,6 +209,8 @@ run '~/.tmux/plugins/tpm/tpm'
 # Avoid date/time taking up space
 set -g status-right ''
 set -g status-right-length 0
+
+source-file ~/.dotfiles/base16/tmux/colors/base16-gruvbox-dark-hard.conf
 
 # EOF
 #

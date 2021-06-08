@@ -88,6 +88,14 @@ silent !mkdir ~/.config/nvim/backups > /dev/null 2>&1
 set undodir=~/.config/nvim/backups
 set undofile
 
+" ================================ For Java===================================
+
+" map <F6> :!java %:r<SPACE>
+" map <F7> :w<ENTER>:make<ENTER>
+
+" set makeprg=javac %\
+" set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
+
 " ================================ Auto command ===================================
 
 
@@ -156,6 +164,9 @@ call plug#begin('~/.config/nvim/plugged/')
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 
+    " For Java
+    Plug 'mfussenegger/nvim-jdtls'
+
     call plug#end()
 
 inoremap jk <Esc>
@@ -185,6 +196,10 @@ imap <C-Q> <Plug>BujoCheckinsert
 " nmap <Leader>th <Plug>BujoAddnormal
 let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
 let g:bujo#window_width = 40
+
+" fzf
+nnoremap <silent> <leader>f :FZF<cr>
+nnoremap <silent> <leader>F :FZF ~<cr>
 
 "----- airline -----
 "let g:airline_left_sep='>'

@@ -21,6 +21,13 @@
          }
        }
     }
+/*
+    "clangd": {
+      "command": "clangd",
+      "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
+      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
+    }
+*/
   },
   "java.home": "/opt/java/jdk11",
   /* "java.jdt.ls.vmargs": "-encoding UTF-8", */
