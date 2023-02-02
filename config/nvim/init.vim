@@ -61,7 +61,7 @@ set nowb
 set smartindent
 set autoindent
 set shiftwidth=4                  " autoindent witdth
-set softtabstop=4                 " number of spaces in tab where editing
+set softtabstop=4                 " nof spaces in tab where editing
 set tabstop=4                     " number of visual spaces per TAB
 set expandtab                     " tabs are spaces
 
@@ -96,6 +96,8 @@ set undofile
 " set makeprg=javac %\
 " set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
 
+set tags=./tags,tags
+
 " ================================ Auto command ===================================
 
 
@@ -116,8 +118,6 @@ call plug#begin('~/.config/nvim/plugged/')
     Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 
     Plug 'nightsense/simplifysimplify'
-    " Plug 'wakatime/vim-wakatime'            "check coding time
-
     Plug 'bronson/vim-visual-star-search'
 
     Plug 'jistr/vim-nerdtree-tabs'          "Toggle nerd tree with one key
@@ -153,7 +153,7 @@ call plug#begin('~/.config/nvim/plugged/')
     Plug 'mhinz/vim-startify'               "fancy start page for empty vim
     Plug 'posva/vim-vue'
 
-"    Plug 'joshdick/onedark.vim'             "One Dark syntax theme https://github.com/joshdick/onedark.vim
+"    Plug 'joshdick/onedark.vim'            "One Dark syntax theme https://github.com/joshdick/onedark.vim
     Plug 'sheerun/vim-polyglot'             "A collection of language packs https://github.com/sheerun/vim-polyglot
 
     Plug 'thaerkh/vim-indentguides'
@@ -165,7 +165,16 @@ call plug#begin('~/.config/nvim/plugged/')
     Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 
     " For Java
-    Plug 'mfussenegger/nvim-jdtls'
+    Plug 'mfussenegger/nvim-jdtls'          "https://github.com/mfussenegger/nvim-jdtls
+
+    Plug 'preservim/tagbar'
+
+    " Media File
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-media-files.nvim'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
     call plug#end()
 
@@ -174,6 +183,8 @@ inoremap jk <Esc>
 "================================= Plugins setting ==================================
 "----- Nerd Tree -----
 map <F3> :NERDTreeToggle<CR>
+" map <F3> :NERDTreeToggle<CR><bar>:TagbarToggle <CR>
+map <A-7> :TagbarToggle <CR>
 
 
 "----- vim visual start search -----
@@ -204,15 +215,29 @@ nnoremap <silent> <leader>F :FZF ~<cr>
 "----- airline -----
 "let g:airline_left_sep='>'
 "let g:airline_right_sep='<'
-let g:airline#extensions#tabline#enabled = 0
-let g:airline#extensions#tabline#show_buffers = 1
+" buffer list
+let g:airline#extensions#tabline#enabled = 1
+" print filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_buffers = 2
+" status bar separator
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'default'
-"let g:airline_theme='hybrid'
+let g:airline_powerline_fonts = 1
+" remove Y section
+" let g:airline_section_y = ''
+" not use last status
+" let g:airline_section_warning = ""
+" let g:airline_theme='hybrid'
 
 nnoremap <leader>q :bp<CR>
 nnoremap <leader>w :bn<CR>
+
+"----- tagbar -----
+let g:tagbar_position = 'left'
+let g:tagbar_left = 1
+let g:tagbar_width = max([25, winwidth(0) / 5])
 
 "----- gruvbox -----
 let g:gruvbox_contrast_dark = 'hard'
@@ -342,10 +367,12 @@ let g:indentguides_tabchar = '|'
 " https://github.com/ctrlpvim/ctrlp.vim
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git$\|node_modules$\|DS_Store$\|log$\|tmp$',
-    \ 'file': '\v\.(pyc|exe|so|dll)$'
+    \ 'file': '\v\.(pyc|exe|so|dll|class)$'
     \ }
 
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']       "Ignore in .gitignore
+
+set termguicolors
 
 " colorscheme onedark
 colorscheme gruvbox
