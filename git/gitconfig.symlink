@@ -1,7 +1,7 @@
 # gitconfig
 [user]
-    name = geeksaga
-    email = geeksaga@geeksaga.com
+	name = geeksaga
+	email = geeksaga@geeksaga.com
 
 [github]
     user = geeksaga 

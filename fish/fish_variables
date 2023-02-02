@@ -37,9 +37,12 @@ SETUVAR _fish_abbr_vimdiff:nvim\x20\x2dd
 SETUVAR _fish_abbr_yr:cal\x20\x2dy
 SETUVAR _fish_abbr_z:fasd_cd\x20\x2dd
 SETUVAR _fish_abbr_zz:fasd_cd\x20\x2dd\x20\x2di
+<<<<<<< Updated upstream
 SETUVAR _fisher_fishgretel_2F_fasd_files:/home/albert/\x2econfig/fish/functions/__fasd_print_completion\x2efish\x1e/home/albert/\x2econfig/fish/functions/a\x2efish\x1e/home/albert/\x2econfig/fish/functions/d\x2efish\x1e/home/albert/\x2econfig/fish/functions/f\x2efish\x1e/home/albert/\x2econfig/fish/functions/fasd_cd\x2efish\x1e/home/albert/\x2econfig/fish/functions/s\x2efish\x1e/home/albert/\x2econfig/fish/functions/sd\x2efish\x1e/home/albert/\x2econfig/fish/functions/sf\x2efish\x1e/home/albert/\x2econfig/fish/functions/z\x2efish\x1e/home/albert/\x2econfig/fish/functions/zz\x2efish\x1e/home/albert/\x2econfig/fish/conf\x2ed/__fasd_run\x2efish\x1e/home/albert/\x2econfig/fish/conf\x2ed/aliases\x2efish\x1e/home/albert/\x2econfig/fish/completions/a\x2efish\x1e/home/albert/\x2econfig/fish/completions/d\x2efish\x1e/home/albert/\x2econfig/fish/completions/f\x2efish\x1e/home/albert/\x2econfig/fish/completions/fasd\x2efish\x1e/home/albert/\x2econfig/fish/completions/s\x2efish\x1e/home/albert/\x2econfig/fish/completions/sd\x2efish\x1e/home/albert/\x2econfig/fish/completions/sf\x2efish\x1e/home/albert/\x2econfig/fish/completions/z\x2efish\x1e/home/albert/\x2econfig/fish/completions/zz\x2efish
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:/home/albert/\x2econfig/fish/functions/fisher\x2efish\x1e/home/albert/\x2econfig/fish/completions/fisher\x2efish
 SETUVAR _fisher_plugins:jorgebucaran/fisher\x1efishgretel/fasd
+=======
+>>>>>>> Stashed changes
 SETUVAR fish_color_autosuggestion:585858
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:a1b56c
@@ -69,4 +72,7 @@ SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
+<<<<<<< Updated upstream
 SETUVAR fish_user_paths:/home/albert/\x2efzf/bin\x1e/Users/albert/\x2efzf/bin
+=======
+>>>>>>> Stashed changes

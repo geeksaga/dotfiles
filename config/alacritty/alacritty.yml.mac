@@ -1,76 +1,145 @@
 window:
-  # Blank space added around the window in pixels. This padding is scaled
-  # by DPI and the specified value is always added at both opposing sides.
+# Blank space added around the window in pixels. This padding is scaled
+# by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 10
-    y: 10
+    x: 2
+    y: 2
 scrolling:
   # Specifying '0' will disable scrolling.
   history: 100000
   # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0).
   multiplier: 3
+
+ # Font configuration
 font:
-  normal:
-    family: Menlo
-    style: Regular
-  bold:
-    family: Menlo
-    style: Bold
-  italic:
-    family: Menlo
-    style: Italic
-  bold_italic:
-    family: Menlo
-    style: Bold Italic
-  size: 16.0
-  use_thin_strokes: true
+   # Normal (roman) font face
+   normal:
+     # Font family
+     #
+     # Default:
+     #   - (macOS) Menlo
+     #   - (Linux/BSD) monospace
+     #   - (Windows) Consolas
+     # family: "Noto Sans Mono"
+     family: Menlo
+ 
+     # The `style` can be specified to pick a specific face.
+     #style: Regular
+
+   # Bold font face
+   #bold:
+     # Font family
+     #
+     # If the bold family is not specified, it will fall back to the
+     # value specified for the normal font.
+     #family: monospace
+
+     # The `style` can be specified to pick a specific face.
+     #style: Bold
+
+   # Italic font face
+   #italic:
+     # Font family
+     #
+     # If the italic family is not specified, it will fall back to the
+     # value specified for the normal font.
+     #family: monospace
+
+     # The `style` can be specified to pick a specific face.
+     #style: Italic
+
+   # Bold italic font face
+   #bold_italic:
+     # Font family
+     #
+     # If the bold italic family is not specified, it will fall back to the
+     # value specified for the normal font.
+     #family: monospace
+
+
+     # The `style` can be specified to pick a specific face.
+     #style: Italic
+
+   # Bold italic font face
+   #bold_italic:
+     # Font family
+     #
+     # If the bold italic family is not specified, it will fall back to the
+     # value specified for the normal font.
+     #family: monospace
+
+     # The `style` can be specified to pick a specific face.
+     #style: Bold Italic
+
+   # Point size
+   size: 14.0
+
+   # Offset is the extra space around each character. `offset.y` can be thought
+   # of as modifying the line spacing, and `offset.x` as modifying the letter
+   # spacing.
+   #offset:
+   #  x: 0
+   #  y: 0
+
+   # Glyph offset determines the locations of the glyphs within their cells with
+   # the default being at the bottom. Increasing `x` moves the glyph to the
+   # right, increasing `y` moves the glyph upward.
+   #glyph_offset:
+   #  x: 0
+   #  y: 0
+
+   # Thin stroke font rendering (macOS only)
+   #
+   # Thin strokes are suitable for retina displays, but for non-retina screens
+   # it is recommended to set `use_thin_strokes` to `false`.
+   use_thin_strokes: true
 # If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: true
+# draw_bold_text_with_bright_colors: true
 # Base16 Default Dark 256 - alacritty color config
 # Chris Kempson (http://chriskempson.com)
 colors:
   # Default colors
   primary:
-    background: '0x181818'
-    foreground: '0xd8d8d8'
+    background: '#1d2021'
+    foreground: '#d5c4a1'
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x181818'
-    cursor: '0xd8d8d8'
+    text: '#1d2021'
+    cursor: '#d5c4a1'
   # Normal colors
   normal:
-    black: '0x181818'
-    red: '0xab4642'
-    green: '0xa1b56c'
-    yellow: '0xf7ca88'
-    blue: '0x7cafc2'
-    magenta: '0xba8baf'
-    cyan: '0x86c1b9'
-    white: '0xd8d8d8'
+    black: '#1d2021'
+    red: '#fb4934'
+    green: '#b8bb26'
+    yellow: '#fabd2f'
+    blue: '#83a598'
+    magenta: '#d3869b'
+    cyan: '#8ec07c'
+    white: '#d5c4a1'
   # Bright colors
   bright:
-    black: '0x585858'
-    red: '0xab4642'
-    green: '0xa1b56c'
-    yellow: '0xf7ca88'
-    blue: '0x7cafc2'
-    magenta: '0xba8baf'
-    cyan: '0x86c1b9'
-    white: '0xf8f8f8'
+    black: '#665c54'
+    red: '#fb4934'
+    green: '#b8bb26'
+    yellow: '#fabd2f'
+    blue: '#83a598'
+    magenta: '#d3869b'
+    cyan: '#8ec07c'
+    white: '#fbf1c7'
   indexed_colors:
-    - { index: 16, color: '0xdc9656' }
-    - { index: 17, color: '0xa16946' }
-    - { index: 18, color: '0x282828' }
-    - { index: 19, color: '0x383838' }
-    - { index: 20, color: '0xb8b8b8' }
-    - { index: 21, color: '0xe8e8e8' }
+    - { index: 16, color: '#fe8019' }
+    - { index: 17, color: '#d65d0e' }
+    - { index: 18, color: '#3c3836' }
+    - { index: 19, color: '#504945' }
+    - { index: 20, color: '#bdae93' }
+    - { index: 21, color: '#ebdbb2' }
 # Specifying a `duration` of `0` will disable the visual bell.
 bell:
   animation: EaseOutExpo
   duration: 300
   color: '0xffffff'
-background_opacity: 0.99
+# background_opacity: 0.99
 selection:
   # This string contains all characters that are used as separators for
   # "semantic words" in Alacritty.
@@ -79,6 +148,7 @@ selection:
   save_to_clipboard: true
 # Allow terminal applications to change Alacritty’s window title.
 window.dynamic_title: true
+window.opacity: 0.99
 cursor:
   style: Block
   unfocused_hollow: true

@@ -7,6 +7,7 @@ set number                      " show line numbers
 set showmatch                   " highlight matched bracket [{()}]
 "set ruler
 "set showcmd                     " show command in bottom bar
+set cmdheight=1                  " Give more space for displaying messages.
 set wildmenu                     " visual autocomplete for command menu
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
@@ -117,6 +118,9 @@ call plug#begin('~/.config/nvim/plugged/')
 
     Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+
     Plug 'nightsense/simplifysimplify'
     Plug 'bronson/vim-visual-star-search'
 
@@ -176,6 +180,8 @@ call plug#begin('~/.config/nvim/plugged/')
     Plug 'nvim-telescope/telescope-media-files.nvim'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
+    Plug 'preservim/tagbar'
+
     call plug#end()
 
 inoremap jk <Esc>
@@ -185,7 +191,6 @@ inoremap jk <Esc>
 map <F3> :NERDTreeToggle<CR>
 " map <F3> :NERDTreeToggle<CR><bar>:TagbarToggle <CR>
 map <A-7> :TagbarToggle <CR>
-
 
 "----- vim visual start search -----
 " xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
@@ -213,8 +218,8 @@ nnoremap <silent> <leader>f :FZF<cr>
 nnoremap <silent> <leader>F :FZF ~<cr>
 
 "----- airline -----
-"let g:airline_left_sep='>'
-"let g:airline_right_sep='<'
+let g:airline_left_sep='>'
+let g:airline_right_sep='<'
 " buffer list
 let g:airline#extensions#tabline#enabled = 1
 " print filename
@@ -248,6 +253,13 @@ endif
 let g:gruvbox_invert_selection='0'
 
 "----- Coc -----
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
 " Use <c-space> to trigger completion.
 if has('nvim')
   inoremap <silent><expr> <c-space> coc#refresh()
@@ -311,6 +323,19 @@ nmap <leader>f  <Plug>(coc-format-selected)
 
 let g:loaded_ruby_provider = 0
 let g:python3_host_prog = '/opt/python3.8.5/bin/python3'
+
+" ----- Telescope -----
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" Using Lua functions
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 " ----- lightline ----
 let g:lightline = {
