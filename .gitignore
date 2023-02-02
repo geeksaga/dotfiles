@@ -14,4 +14,6 @@ vim/vim.symlink/plugged/
 
 config/alacritty/alacritty.yml
 
+fish/config.fish
+
 Brewfile.lock.json
