@@ -2,8 +2,8 @@ window:
 # Blank space added around the window in pixels. This padding is scaled
 # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 2
-    y: 2
+    x: 5
+    y: 5
 scrolling:
   # Specifying '0' will disable scrolling.
   history: 100000
@@ -22,7 +22,7 @@ font:
      #   - (Linux/BSD) monospace
      #   - (Windows) Consolas
      # family: "Noto Sans Mono"
-     family: Menlo
+     family: "MesloLGMDZ Nerd font" 
  
      # The `style` can be specified to pick a specific face.
      #style: Regular
@@ -93,7 +93,8 @@ font:
    #
    # Thin strokes are suitable for retina displays, but for non-retina screens
    # it is recommended to set `use_thin_strokes` to `false`.
-   use_thin_strokes: true
+   # use_thin_strokes: true
+
 # If `true`, bold text is drawn using the bright color variants.
 # draw_bold_text_with_bright_colors: true
 # Base16 Default Dark 256 - alacritty color config
@@ -156,7 +157,8 @@ cursor:
 live_config_reload: true
 # Tell Alacritty that we’re using fish here
 shell:
-  program: /usr/local/bin/fish
+# program: /usr/local/bin/fish
+  program: /bin/zsh
   args:
     - --login
 # Enable clickable URLs
