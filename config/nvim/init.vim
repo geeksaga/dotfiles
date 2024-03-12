@@ -1,12 +1,12 @@
 "================================= General Config ===================================
 filetype plugin on
 
-let g:mapleader = ","           " set leader key to comma
+let g:mapleader = " "           " set leader key to comma
 
-set number                      " show line numbers
+" set number                      " show line numbers
 set showmatch                   " highlight matched bracket [{()}]
-"set ruler
-"set showcmd                     " show command in bottom bar
+" set ruler
+" set showcmd                     " show command in bottom bar
 set cmdheight=1                  " Give more space for displaying messages.
 set wildmenu                     " visual autocomplete for command menu
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
@@ -21,7 +21,7 @@ set ignorecase                  " ignore Case sensitive when searching
 set incsearch                   " search as characters are entered
 
 "================================= Optional setting =================================
-set relativenumber                 " show relative number from current line
+" set relativenumber                 " show relative number from current line
 set history=1000                   " store :cmd history
 set hidden                         " Hide buffers when they are abandoned
 set title                          " change the terminal title
@@ -182,13 +182,15 @@ call plug#begin('~/.config/nvim/plugged/')
 
     Plug 'preservim/tagbar'
 
+    Plug 'nacro90/numb.nvim'                "https://github.com/nacro90/numb.nvim
+
     call plug#end()
 
 inoremap jk <Esc>
 
 "================================= Plugins setting ==================================
 "----- Nerd Tree -----
-map <F3> :NERDTreeToggle<CR>
+map <leader>e :NERDTreeToggle<CR>
 " map <F3> :NERDTreeToggle<CR><bar>:TagbarToggle <CR>
 map <A-7> :TagbarToggle <CR>
 
@@ -322,7 +324,9 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 let g:loaded_ruby_provider = 0
-let g:python3_host_prog = '/opt/python3.8.5/bin/python3'
+let g:loaded_perl_provider = 0
+" let g:python3_host_prog = '/opt/python3.8.5/bin/python3'
+let g:python3_host_prog = '/usr/bin/python3'
 
 " ----- Telescope -----
 " Find files using Telescope command-line sugar.
@@ -412,3 +416,9 @@ let loaded_matchparen = 1
 let g:netrw_browse_split = 2
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
+
+" augroup highlight_yank
+"     autocmd!
+"     autocmd TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=350})
+" augroup END
+
