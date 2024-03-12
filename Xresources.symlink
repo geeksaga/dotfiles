@@ -1,6 +1,6 @@
-#include "/home/albert/dotfiles/base16/base16-gruvbox-dark-hard-256.Xresources"
-*faceName: Public Sans
-xterm*faceSize: 14
+#include "/home/albert/.dotfiles/base16/base16-gruvbox-dark-hard-256.Xresources"
+XTerm*faceName: MeslogLGL Nerd Font
+XTerm*faceSize: 14
 *multiClickTime: 300
 *international: true
 Xcursor.theme: default
@@ -119,7 +119,7 @@ URxvt.keysym.Control-Left:	\033[1;5D
 ! ------------------------------------------------------------------------------
 ! Rofi configs
 ! ------------------------------------------------------------------------------
-
+rofi.dpi: 196
 rofi.color-enabled: true
 rofi.color-window: #2e3440, #2e3440, #2e3440
 rofi.color-normal: #2e3440, #d8dee9, #2e3440, #2e3440, #bf616a
