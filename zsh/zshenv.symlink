@@ -61,3 +61,4 @@ export FZF_DEFAULT_COMMAND='fd --type f'
 # export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_OPTS='--height 40% --border --inline-info'
 
+export PATH="/opt/dart/flutter/bin:$PATH"

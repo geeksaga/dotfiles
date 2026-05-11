@@ -17,10 +17,10 @@ SETUVAR _fish_abbr_glance:env\x20OS_PASSWORD\x3d\x28pass\x20www/mit\x2dopenstack
 SETUVAR _fish_abbr_kl:keybase\x20chat\x20list
 SETUVAR _fish_abbr_kr:keybase\x20chat\x20read
 SETUVAR _fish_abbr_ks:keybase\x20chat\x20send
-SETUVAR _fish_abbr_l:exa
-SETUVAR _fish_abbr_ll:exa\x20\x2dl
-SETUVAR _fish_abbr_lll:exa\x20\x2dla
-SETUVAR _fish_abbr_ls:exa
+SETUVAR _fish_abbr_l:eza
+SETUVAR _fish_abbr_ll:eza\x20\x2dl
+SETUVAR _fish_abbr_lll:eza\x20\x2dla
+SETUVAR _fish_abbr_ls:eza
 SETUVAR _fish_abbr_m:make
 SETUVAR _fish_abbr_nova:env\x20OS_PASSWORD\x3d\x28pass\x20www/mit\x2dopenstack\x20\x7c\x20head\x20\x2dn1\x29\x20nova
 SETUVAR _fish_abbr_o:xdg\x2dopen

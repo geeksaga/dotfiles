@@ -1,1 +1,52 @@
-/home/albert/.config/alacritty/alacritty.toml.linux
+
+# https://github.com/alacritty/alacritty-theme
+
+# https://alacritty.org/config-alacritty.html
+
+[env]
+TERM = "xterm-256color"
+
+[font.normal]
+family = "MesloLGS NF"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Alt"
+
+[scrolling]
+history = 100000
+
+[terminal.shell]
+program = "/usr/bin/fish"
+args = ["--login"]
+
+[window]
+# decorations = "none"
+decorations = "Full"
+dynamic_padding = false
+opacity = 1.0
+
+[window.dimensions]
+columns = 100
+lines = 30
+
+[window.padding]
+x = 5
+y = 5
+
+[general]
+import = [
+#  "~/.config/alacritty/themes/themes/ayu_dark.toml"
+#  "~/.config/alacritty/themes/themes/ayu_light.toml"
+#  "~/.config/alacritty/themes/themes/alabaster.toml"
+#  "~/.config/alacritty/themes/themes/ashes_light.toml"
+  "~/.config/alacritty/themes/themes/dawnfox.toml"
+]
+
+[terminal]

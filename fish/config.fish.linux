@@ -31,6 +31,7 @@ if status --is-interactive
 		builtin source ~/dev/others/base16/templates/fish-shell/conf.d/base16.fish
 	end
 	if ! set -q TMUX
+		set -x SHELL /bin/fish
 		exec tmux
 	end
 end
@@ -43,11 +44,13 @@ else
 	abbr -a up 'sudo pacman -Syu'
 end
 
-if command -v exa > /dev/null
-	abbr -a l 'exa'
-	abbr -a ls 'exa'
-	abbr -a ll 'exa -l'
-	abbr -a lll 'exa -la'
+if command -v eza > /dev/null
+	abbr -a l 'eza'
+	abbr -a ls 'eza'
+	abbr -a ll 'eza -l'
+	abbr -a lll 'eza -la'
+	abbr -a li 'eza -l --icons'
+	abbr -a lli 'eza -la --icons'
 else
 	abbr -a l 'ls'
 	abbr -a ll 'ls -l'
@@ -116,26 +119,6 @@ function remote_alacritty
 	scp $fn $argv[1]":alacritty.ti"
 	ssh $argv[1] tic "alacritty.ti"
 	ssh $argv[1] rm "alacritty.ti"
-end
-
-function remarkable
-	if test (count $argv) -lt 1
-		echo "No files given"
-		return
-	end
-
-	ip addr show up to 10.11.99.0/29 | grep enp2s0f0u3 >/dev/null
-	if test $status -ne 0
-		# not yet connected
-		echo "Connecting to reMarkable internal network"
-		sudo dhcpcd enp2s0f0u3
-	end
-	for f in $argv
-		echo "-> uploading $f"
-		curl --form "file=@\""$f"\"" http://10.11.99.1/upload
-		echo
-	end
-	sudo dhcpcd -k enp2s0f0u3
 end
 
 # Type - to move up to top parent dir which is a repository
@@ -230,7 +213,8 @@ function fish_greeting
 	echo
 	echo -ne (\
 		df -l -h | grep -E 'dev/(xvda|sd|mapper)' | \
-		awk '{printf "\\\\t%s\\\\t%4s / %4s  %s\\\\n\n", $6, $3, $2, $5}' | \
+		# df -l -h | grep -E 'dev' | \
+		awk '{printf "\\\\t%-8s\\\\t%5s / %4s  %3s\\\\n\n", $6, $3, $2, $5}' | \
 		sed -e 's/^\(.*\([8][5-9]\|[9][0-9]\)%.*\)$/\\\\e[0;31m\1\\\\e[0m/' -e 's/^\(.*\([7][5-9]\|[8][0-4]\)%.*\)$/\\\\e[0;33m\1\\\\e[0m/' | \
 		paste -sd ''\
 	)
@@ -302,7 +286,7 @@ function fish_greeting
 
 	if test -s ~/todo
 		set_color magenta
-		cat todo | sed 's/^/ /'
+		cat ~/todo | sed 's/^/ /'
 		echo
 	end
 
